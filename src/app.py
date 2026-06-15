@@ -5,9 +5,14 @@ import plotly.express as px
 st.set_page_config(page_title="Loyalty Retention Dashboard", layout="wide")
 
 # ---------- Load Data ----------
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @st.cache_data
 def load_data():
-    df = pd.read_csv("../data/processed/customer_segments_final.csv")
+    path = os.path.join(BASE_DIR, "..", "data", "processed", "customer_segments_final.csv")
+    df = pd.read_csv(path)
     return df
 
 df = load_data()
