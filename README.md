@@ -16,12 +16,44 @@ This project analyzes ~16,737 Canadian airline loyalty members to:
 2. Segment customers into 5 actionable groups based on behavior and value
 3. Recommend specific retention actions for each segment
 
-## How to Run Locally
-1. Create virtual environment: `python -m venv venv`
-2. Activate it: `venv\Scripts\activate`
-3. Install dependencies: `pip install -r src/requirements.txt`
-4. Run notebooks in order (notebooks/01 through 05) to reproduce the analysis
-5. Run dashboard: `cd src`, then `streamlit run app.py`
+## How to Run the Dashboard Locally (Reproducibility)
+
+### Prerequisites
+- Python 3.10 or higher installed
+- Git installed
+
+### Steps
+
+1. Clone the repository:git clone https://github.com/KanishkaGupta28/airline-loyalty-project.git
+cd airline-loyalty-projec
+
+2. Create and activate a virtual environment:
+python -m venv venv
+- Windows: `venv\Scripts\activate`
+   - Mac/Linux: `source venv/bin/activate`
+
+3. Install dependencies:
+pip install -r src/requirements.txt
+
+4. Run the dashboard:
+cd src
+streamlit run app.py
+
+5. The app will open automatically in your browser at `http://localhost:8501`
+
+The dashboard reads pre-processed data from `data/processed/customer_segments_final.csv` and the trained model from `src/model/`, both of which are already included in this repository — no additional setup or data download is required.
+
+## How to Reproduce the Full Analysis (Optional)
+
+If you want to regenerate the processed data and model from scratch instead of using the included files, run the notebooks in this order after completing steps 1-3 above:
+
+1. `notebooks/01_data_exploration.ipynb` - initial data exploration
+2. `notebooks/02_data_cleaning.ipynb` - cleaning, merging, churn label creation
+3. `notebooks/03_churn_model.ipynb` - churn prediction model training
+4. `notebooks/04_segmentation.ipynb` - customer segmentation
+5. `notebooks/05_apply_model.ipynb` - applies the model to generate churn risk scores
+
+Each notebook saves its outputs to `data/processed/` or `src/model/`, which the dashboard then reads.
 
 ## Project Structure
 - `data/raw/` : original CSV datasets
